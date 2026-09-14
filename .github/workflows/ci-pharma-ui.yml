@@ -23,7 +23,7 @@ permissions:
   pull-requests: read
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: ap-southeast-1
   ECR_REPOSITORY: pharma-ui
   GITOPS_REPO: ${{ vars.GITOPS_REPO }}
 
@@ -151,7 +151,7 @@ jobs:
         run: echo "image_tag=sha-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
       - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/pharma-dev-github-actions-role
           aws-region: ${{ env.AWS_REGION }}
